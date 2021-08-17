@@ -1,0 +1,1 @@
+Much of the code is pulled from https://www.youtube.com/watch?v=JtiK0DOeI4A&t=4361s with some changes to the a* algorithm to fit dijkstra's
