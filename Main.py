@@ -9,9 +9,8 @@ pygame.display.set_caption("Dijkstra's Path Finding") # Window title
 
 
 def main(win, width):
-    ROWS = 50 # Change the size of the grid
+    ROWS = 30 # Change the size of the grid
     grid = Graph.make_grid(ROWS, width)
-    #print(grid)
 
     start = None
     end = None
@@ -43,19 +42,19 @@ def main(win, width):
                 pos = pygame.mouse.get_pos()
                 row, col = Graph.get_clicked_pos(pos, ROWS, width)
                 node = grid[row][col]
-                node.reset()
-                if node == start:
+                node.reset() # Change colour to white
+                if node == start: 
                     start = None
                 if node == end:
                     end = None
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and start and end:
-                    for row in grid:
+            if event.type == pygame.KEYDOWN: 
+                if event.key == pygame.K_SPACE and start and end: # If spacebar and there is a start and end node
+                    for row in grid: 
                         for node in row:
-                            node.update_neighbours(grid)
+                            node.update_neighbours(grid) # Creating 2d array of neighbours for each node on the grid
                             
-                    dijkstras(lambda: Graph.draw(win, grid, ROWS, width), grid, start, end)
+                    dijkstras(lambda: Graph.draw(win, grid, ROWS, width), grid, start, end) # Lambda function required as you cannot pass a function as an arguement
     pygame.quit()
 
 if __name__ == "__main__":
