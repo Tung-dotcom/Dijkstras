@@ -9,7 +9,7 @@ pygame.display.set_caption("Dijkstra's Path Finding") # Window title
 
 
 def main(win, width):
-    ROWS = 30 # Change the size of the grid
+    ROWS = 40 # Change the size of the grid
     grid = Graph.make_grid(ROWS, width)
 
     start = None
@@ -55,6 +55,13 @@ def main(win, width):
                             node.update_neighbours(grid) # Creating 2d array of neighbours for each node on the grid
                             
                     dijkstras(lambda: Graph.draw(win, grid, ROWS, width), grid, start, end) # Lambda function required as you cannot pass a function as an arguement
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    for row in grid:
+                        for node in row:
+                            start, end = None, None
+                            node.reset()
     pygame.quit()
 
 if __name__ == "__main__":
